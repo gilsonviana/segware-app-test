@@ -2,6 +2,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import Launch from '@screens/Launch'
+import SignUp from '@screens/SignUp'
 
 interface Props {}
 
@@ -15,10 +16,10 @@ const Stack = createStackNavigator<AuthStackParamList>()
 
 const AuthStack: React.FunctionComponent<Props> = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator mode="modal">
             <Stack.Screen name="Launch" component={Launch}/>
-            {/* <Stack.Screen name="SignUp" component={}/>
-            <Stack.Screen name="SignIn" component={}/> */}
+            <Stack.Screen name="SignUp" component={SignUp}/>
+            {/* <Stack.Screen name="SignIn" component={}/> */}
         </Stack.Navigator>
     )
 }
