@@ -59,6 +59,10 @@ const SignUp: React.FunctionComponent<Props> = ({
         return true
     }   
 
+    const isSignUpFormValid = (): boolean => {
+        return Object.values(signUpForm).every(field => field.status === SignUpFieldStatus.VALID)
+    }
+
     const handleSignUpOnBlur = (key: string) => {
         if (_validateField(signUpForm[key].value)) {
             setSignUpForm({
@@ -114,6 +118,9 @@ const SignUp: React.FunctionComponent<Props> = ({
                         autoCorrect={false}
                         autoCompleteType="username"
                         autoCapitalize="none"/>
+                    {
+                        signUpForm.username.status === SignUpFieldStatus.INVALID && <Text small danger>Field required.</Text>
+                    }
                     <TextInput 
                         onChangeText={value => handleSignUpOnChange('password', value)}
                         onBlur={() => handleSignUpOnBlur('password')}
@@ -121,7 +128,11 @@ const SignUp: React.FunctionComponent<Props> = ({
                         placeholder="Password"
                         autoCompleteType="password"
                         secureTextEntry/>
+                    {
+                        signUpForm.password.status === SignUpFieldStatus.INVALID && <Text small danger>Field required.</Text>
+                    }
                     <Button  
+                        disabled={!isSignUpFormValid()}
                         onPress={handleOnSubmit}
                         style={{marginTop: 20, marginBottom: 10}}
                         square
@@ -148,9 +159,10 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        marginBottom: 20
+        marginBottom: 30
     },
     headerTitle: {
+        zIndex: -1,
         position: 'absolute', 
         left: 0, 
         right: 0, 
