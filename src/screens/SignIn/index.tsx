@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { SafeAreaView, View, StyleSheet, ScrollView, Image } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { LinearGradient } from 'expo-linear-gradient'
+import LottieView from 'lottie-react-native'
 
 import theme from '@styled/theme'
 import Text from '@styled/Text'
@@ -100,8 +101,19 @@ const SignIn: React.FunctionComponent<Props> = ({
                 style={styles.gradient}
                 colors={[theme.color.primary, 'transparent']} />
             <SafeAreaView style={styles.safe}>
-                {/* <Image source={} /> */}
                 <ScrollView style={styles.container}>
+                    <View style={{marginVertical: 40}}>
+                        <LottieView 
+                            autoPlay
+                            loop
+                            style={{
+                                alignSelf: 'center',
+                                width: 120,
+                                height: 120
+                            }}
+                            source={require('@assets/animations/sign-in.json')}
+                        />
+                    </View>
                     <TextInput 
                         onChangeText={value => handleLoginOnChange('username', value)}
                         onBlur={() => handleLoginOnBlur('username')}
