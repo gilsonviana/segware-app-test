@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import Launch from '@screens/Launch'
 import SignUp from '@screens/SignUp'
+import SignIn from '@screens/SignIn'
 
 interface Props {}
 
@@ -19,7 +20,7 @@ const AuthStack: React.FunctionComponent<Props> = () => {
         <Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Launch" component={Launch}/>
             <Stack.Screen name="SignUp" component={SignUp} options={{cardStyle: { backgroundColor: 'transparent' }}}/>
-            {/* <Stack.Screen name="SignIn" component={}/> */}
+            <Stack.Screen name="SignIn" component={SignIn}/>
         </Stack.Navigator>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, Text, StyleSheet, View } from 'react-native'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { LinearGradient } from 'expo-linear-gradient'
 
@@ -19,6 +19,10 @@ const Launch: React.FunctionComponent<Props> = ({
         navigation.navigate('SignUp')
     }
 
+    const handleLoginOnPress = (): void => {
+        navigation.navigate('SignIn')
+    }
+
     return (
         <View style={{flex: 1}}>
             <LinearGradient
@@ -32,7 +36,7 @@ const Launch: React.FunctionComponent<Props> = ({
                             label="Sign up"/>
                         <Button 
                             link
-                            onPress={handleSignUpOnPress}
+                            onPress={handleLoginOnPress}
                             label="Already have an account? Log in"/>
                     </View>
                 </View>
