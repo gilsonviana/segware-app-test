@@ -1,21 +1,29 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+import AuthStack from '@navigation/Auth'
+
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <KeyboardAvoidingView style={styles.container}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Launch" component={AuthStack}/>
+        </Stack.Navigator>
+      </NavigationContainer>
       <StatusBar style="auto" />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
