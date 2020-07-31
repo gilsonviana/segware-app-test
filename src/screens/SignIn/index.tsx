@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { SafeAreaView, View, StyleSheet } from 'react-native'
+import { SafeAreaView, View, StyleSheet, ScrollView, Image } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { LinearGradient } from 'expo-linear-gradient'
 
 import theme from '@styled/theme'
+import Text from '@styled/Text'
 import Button from '@styled/Button'
 import TextInput from '@styled/TextInput'
 
@@ -98,7 +99,9 @@ const SignIn: React.FunctionComponent<Props> = ({
             <LinearGradient
                 style={styles.gradient}
                 colors={[theme.color.primary, 'transparent']} />
-            <SafeAreaView style={{flex: 1}}>
+            <SafeAreaView style={styles.safe}>
+                {/* <Image source={} /> */}
+                <ScrollView style={styles.container}>
                     <TextInput 
                         onChangeText={value => handleLoginOnChange('username', value)}
                         onBlur={() => handleLoginOnBlur('username')}
@@ -106,9 +109,9 @@ const SignIn: React.FunctionComponent<Props> = ({
                         autoCorrect={false}
                         autoCompleteType="username"
                         autoCapitalize="none"/>
-                    {/* {
-                        signUpForm.username.status === SignUpFieldStatus.INVALID && <Text small danger>Field required.</Text>
-                    } */}
+                    {
+                        loginForm.username.status === LoginFieldStatus.INVALID && <Text small danger>Field required.</Text>
+                    }
                     <TextInput 
                         onChangeText={value => handleLoginOnChange('password', value)}
                         onBlur={() => handleLoginOnBlur('password')}
@@ -116,15 +119,16 @@ const SignIn: React.FunctionComponent<Props> = ({
                         placeholder="Password"
                         autoCompleteType="password"
                         secureTextEntry/>
-                    {/* {
-                        signUpForm.password.status === SignUpFieldStatus.INVALID && <Text small danger>Field required.</Text>
-                    } */}
-                    <Button  
-                        disabled={!isSignUpFormValid()}
-                        onPress={handleOnSubmit}
-                        style={{marginTop: 20, marginBottom: 10}}
-                        square
-                        label="Sign up"/>
+                    {
+                        loginForm.password.status === LoginFieldStatus.INVALID && <Text small danger>Field required.</Text>
+                    }
+                </ScrollView>
+                <Button  
+                    disabled={!isSignUpFormValid()}
+                    onPress={handleOnSubmit}
+                    style={{marginTop: 20, marginBottom: 10}}
+                    square
+                    label="Login"/>
             </SafeAreaView>
         </View>
     )
@@ -138,6 +142,12 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0
     },
+    safe: {
+        flex: 1,
+        marginHorizontal: theme.spacing.margin,
+    },
+    container: {
+    }
 })
 
 export default SignIn

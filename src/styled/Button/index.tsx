@@ -13,6 +13,7 @@ const StyledContainer = styled.TouchableOpacity<Props>`
 `
 
 const StyledText = styled.Text<{ link?: boolean }>`
+    font-family: ${theme.font.family.bold};
     font-weight: bold;
     text-align: center;
     color: ${({link}) => link ? theme.color.dark : theme.color.light};

@@ -14,12 +14,23 @@ export type AuthStackParamList = {
 }
 
 const Stack = createStackNavigator<AuthStackParamList>()
+const Modal = createStackNavigator<AuthStackParamList>()
+
+export const ModalStack: React.FunctionComponent<Props> = () => {
+    return (
+        <Modal.Navigator mode="modal" screenOptions={{
+            headerShown: false,
+            cardStyle: { backgroundColor: 'transparent' }
+        }}>
+            <Modal.Screen name="SignUp" component={SignUp}/>
+        </Modal.Navigator>
+    )
+}
 
 const AuthStack: React.FunctionComponent<Props> = () => {
     return (
-        <Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Launch" component={Launch}/>
-            <Stack.Screen name="SignUp" component={SignUp} options={{cardStyle: { backgroundColor: 'transparent' }}}/>
             <Stack.Screen name="SignIn" component={SignIn}/>
         </Stack.Navigator>
     )

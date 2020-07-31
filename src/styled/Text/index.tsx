@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 import theme from '@styled/theme'
 
 const StyledText = styled.Text<Props>`
+    font-family: ${() => theme.font.family.regular};
     text-decoration: ${({underline}) => underline ? 'underline' : 'none'};
     text-align: ${({center}) => center ? 'center' : 'left'};
     font-weight: ${({bold}) => bold ? 'bold' : 'normal'};

@@ -13,6 +13,10 @@ export default  {
         grey: '#eee'
     },
     font: {
+        family: {
+            regular: 'Rubik-Regular',
+            bold: 'Rubik-Bold'
+        },
         size: {
             regular: '14px',
             large: '18px',
