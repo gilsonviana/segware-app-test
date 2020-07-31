@@ -92,7 +92,7 @@ const SignIn: React.FunctionComponent<Props> = ({
     }
 
     const handleOnSubmit = (): void => {
-        console.log("signUpForm", loginForm)
+        navigation.navigate('App')
     }
 
     return (

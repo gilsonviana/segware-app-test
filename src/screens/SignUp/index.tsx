@@ -94,7 +94,7 @@ const SignUp: React.FunctionComponent<Props> = ({
     }
 
     const handleOnSubmit = (): void => {
-        console.log("signUpForm", signUpForm)
+        navigation.navigate('App')
     }
 
     const handleDismiss = (): void => {

@@ -5,10 +5,9 @@ import styled from 'styled-components/native'
 import theme from '@styled/theme'
 
 const StyledText = styled.Text<Props>`
-    font-family: ${() => theme.font.family.regular};
+    font-family: ${({bold}) => bold? theme.font.family.bold : theme.font.family.regular};
     text-decoration: ${({underline}) => underline ? 'underline' : 'none'};
     text-align: ${({center}) => center ? 'center' : 'left'};
-    font-weight: ${({bold}) => bold ? 'bold' : 'normal'};
     color: ${({light, danger, grey}) => light ? theme.color.light : danger ? theme.color.danger : grey ? theme.color.darkGrey : theme.color.dark};
     font-size: ${({large, small}) => large ? theme.font.size.large : small ? theme.font.size.small : theme.font.size.regular};
 `
