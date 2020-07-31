@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, ScrollView, Dimensions, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -7,7 +7,27 @@ import { AuthStackParamList } from '@navigation/Auth'
 
 import theme from '@styled/theme'
 import Text from '@styled/Text'
+import TextInput from '@styled/TextInput'
+import Button from '@styled/Button'
 
+
+enum SignUpFieldStatus {
+    VALID = 'valid',
+    INVALID = 'invalid',
+    PRESTINE = 'prestine',
+    EDITING = 'editing'
+}
+
+interface ISignUpField {
+    value: string,
+    status: SignUpFieldStatus
+}
+
+interface ISignUpForm {
+    username: ISignUpField
+    password: ISignUpField
+    [key: string]: ISignUpField
+}
 
 interface Props {
     navigation: StackNavigationProp<AuthStackParamList>
@@ -18,6 +38,61 @@ const { height: HEIGHT } = Dimensions.get('screen')
 const SignUp: React.FunctionComponent<Props> = ({
     navigation
 }) => {
+    const [signUpForm, setSignUpForm] = useState<ISignUpForm>({
+        username: {
+            value: '',
+            status: SignUpFieldStatus.PRESTINE
+        },
+        password: {
+            value: '',
+            status: SignUpFieldStatus.PRESTINE
+        }
+    })
+
+    /**
+     * @description Given a value return true if not empty
+     * @param value String to be validate
+     * @return Boolean
+     */
+    const _validateField = (value: string): boolean => {
+        if (!value.trim()) return false
+        return true
+    }   
+
+    const handleSignUpOnBlur = (key: string) => {
+        if (_validateField(signUpForm[key].value)) {
+            setSignUpForm({
+                ...signUpForm,
+                [key]: {
+                    ...signUpForm[key],
+                    status: SignUpFieldStatus.VALID
+                }
+            })
+            return
+        }
+        setSignUpForm({
+            ...signUpForm,
+            [key]: {
+                ...signUpForm[key],
+                status: SignUpFieldStatus.INVALID
+            }
+        })
+    }
+
+    const handleSignUpOnChange = (key: string, value: string): void => {
+        setSignUpForm({
+            ...signUpForm,
+            [key]: {
+                status: SignUpFieldStatus.EDITING,
+                value
+            }
+        })
+    }
+
+    const handleOnSubmit = (): void => {
+        console.log("signUpForm", signUpForm)
+    }
+
     const handleDismiss = (): void => {
         navigation.goBack()
     }
@@ -32,7 +107,26 @@ const SignUp: React.FunctionComponent<Props> = ({
                     <Text bold large style={styles.headerTitle}>Register</Text>
                 </View>
                 <ScrollView>
-
+                    <TextInput 
+                        onChangeText={value => handleSignUpOnChange('username', value)}
+                        onBlur={() => handleSignUpOnBlur('username')}
+                        placeholder="Username" 
+                        autoCorrect={false}
+                        autoCompleteType="username"
+                        autoCapitalize="none"/>
+                    <TextInput 
+                        onChangeText={value => handleSignUpOnChange('password', value)}
+                        onBlur={() => handleSignUpOnBlur('password')}
+                        style={{marginTop: 20}}
+                        placeholder="Password"
+                        autoCompleteType="password"
+                        secureTextEntry/>
+                    <Button  
+                        onPress={handleOnSubmit}
+                        style={{marginTop: 20, marginBottom: 10}}
+                        square
+                        label="Sign up"/>
+                    <Text small center>By signing up, you agree with our terms of use</Text>
                 </ScrollView>
             </View>
         </View>

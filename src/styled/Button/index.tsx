@@ -7,7 +7,7 @@ import theme from '@styled/theme'
 const { width } = Dimensions.get('screen')
 
 const StyledContainer = styled.TouchableOpacity<Props>`
-    border-radius: ${width / 2}px;
+    border-radius: ${({square}) => square ? 0 : width / 2}px;
     padding: ${theme.font.size.regular} 0;
     background-color: ${({disabled, link}) => link ? 'transparent' : disabled ? theme.color.primaryAlt : theme.color.primary};
 `
@@ -19,6 +19,7 @@ const StyledText = styled.Text<{ link?: boolean }>`
 `
 
 interface Props extends TouchableOpacityProps {
+    square?: boolean
     link?: boolean
     label: React.ReactChild
     disabled?: boolean
