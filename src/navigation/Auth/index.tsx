@@ -16,7 +16,7 @@ const Stack = createStackNavigator<AuthStackParamList>()
 
 const AuthStack: React.FunctionComponent<Props> = () => {
     return (
-        <Stack.Navigator mode="modal">
+        <Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Launch" component={Launch}/>
             <Stack.Screen name="SignUp" component={SignUp}/>
             {/* <Stack.Screen name="SignIn" component={}/> */}

@@ -14,7 +14,7 @@ export default function App() {
     <KeyboardAvoidingView style={styles.container}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Launch" component={AuthStack}/>
+          <Stack.Screen name="Launch" component={AuthStack} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
