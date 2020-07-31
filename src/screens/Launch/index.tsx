@@ -26,7 +26,6 @@ const Launch: React.FunctionComponent<Props> = ({
                 colors={[theme.color.primary, 'transparent']} />
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.container}>
-                    <Text>Launch Screen</Text>
                     <View style={styles.bottom}>
                         <Button 
                             onPress={handleSignUpOnPress}

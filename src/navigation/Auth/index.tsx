@@ -18,7 +18,7 @@ const AuthStack: React.FunctionComponent<Props> = () => {
     return (
         <Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Launch" component={Launch}/>
-            <Stack.Screen name="SignUp" component={SignUp}/>
+            <Stack.Screen name="SignUp" component={SignUp} options={{cardStyle: { backgroundColor: 'transparent' }}}/>
             {/* <Stack.Screen name="SignIn" component={}/> */}
         </Stack.Navigator>
     )
